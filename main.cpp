@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
-#include <cstdlib>
+#include <dirent.h>
+#include <sys/stat.h>
 
 using namespace std;
 
@@ -15,6 +16,17 @@ class Commands {
                 return "404";
             }
         }
+        int ls() {
+            DIR* dir;
+            dir = opendir(".");
+            if (dir == NULL) {
+                return -1;
+            }
+
+            closedir(dir);
+        }
+
+
  };
 
 int main() {
@@ -31,6 +43,10 @@ int main() {
             cout << "<ls>";
         } else if (result == "pwd") {
             cout << "<pwd>"; //Execute pwd method
+            int result = userInput.ls();
+            if (result == -1) {
+                cout << "Error can't show files"
+            }
         } else if (result == "404") {
             cout << "command not found";
         }
