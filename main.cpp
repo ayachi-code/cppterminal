@@ -17,13 +17,17 @@ class Commands {
             }
         }
         int ls() {
-            DIR* dir;
+            DIR *dir;
+            struct dirent *items;
             dir = opendir(".");
             if (dir == NULL) {
                 return -1;
             }
-
+            while ((items=readdir(dir)) != NULL) {
+                printf(">> %s\n",items->d_name);
+            }
             closedir(dir);
+            return 0;
         }
 
 
@@ -41,12 +45,12 @@ int main() {
         string result = userInput.checkUserInput(command);
         if (result == "ls") {
             cout << "<ls>";
-        } else if (result == "pwd") {
-            cout << "<pwd>"; //Execute pwd method
             int result = userInput.ls();
             if (result == -1) {
-                cout << "Error can't show files"
+                cout << "Error can't show files";
             }
+        } else if (result == "pwd") {
+            cout << "<pwd>"; //Execute pwd method
         } else if (result == "404") {
             cout << "command not found";
         }
