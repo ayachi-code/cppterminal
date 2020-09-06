@@ -7,7 +7,13 @@ using namespace std;
 class Commands {
     public:
         string checkUserInput(string userCommand) {
-            return userCommand;
+            if (userCommand == "ls") {
+                return "ls";
+            } else if (userCommand == "pwd") {
+                return "pwd";
+            } else {
+                return "404";
+            }
         }
  };
 
@@ -20,8 +26,14 @@ int main() {
     while (command != quit_key) {
         cout << "PLACEHOLDER-PC:";
         //executes functions
-        string foo = userInput.checkUserInput(command);
-        cout << foo;
+        string result = userInput.checkUserInput(command);
+        if (result == "ls") {
+            cout << "<ls>";
+        } else if (result == "pwd") {
+            cout << "<pwd>"; //Execute pwd method
+        } else if (result == "404") {
+            cout << "command not found";
+        }
         cin >> command;
     }
 
