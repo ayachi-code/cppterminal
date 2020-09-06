@@ -5,7 +5,14 @@
 using namespace std;
 
 int main() {
-    char quit_key = 'q';
+    string command = "pwd";
+    string quit_key = "q";
+    cout << "PLACEHOLDER-PC:";
+    cin >> command;
+    while (command != quit_key) {
+        cout << "PLACEHOLDER-PC:";
+        cin >> command;
+    }
 
     return 0;
 }
